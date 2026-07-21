@@ -20,3 +20,12 @@ async def client():
         async with AsyncClient(transport=transport, base_url="http://test") as ac:
             yield ac
     app.dependency_overrides.clear()
+
+
+from app.db.session import session_factory
+
+
+@pytest_asyncio.fixture
+async def db_session():
+    async with session_factory() as session:
+        yield session
