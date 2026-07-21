@@ -4,7 +4,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from sqlalchemy import text
 
-from app.api import health
+from app.api import documents, health
 from app.db.session import engine
 
 SCHEMA_SQL_PATH = Path(__file__).parent / "db" / "schema.sql"
@@ -24,3 +24,4 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="FastAPI RAG", lifespan=lifespan)
 
 app.include_router(health.router)
+app.include_router(documents.router)
