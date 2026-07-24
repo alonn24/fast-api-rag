@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     anthropic_api_key: str
     voyage_api_key: str
     database_url: str = "postgresql+asyncpg://rag:rag@localhost:5433/rag"
+    test_database_url: str = "postgresql+asyncpg://rag:rag@localhost:5433/rag_test"
     embedding_model: str = "voyage-3"
     embedding_dim: int = 1024
     claude_model: str = "claude-opus-4-8"

@@ -14,6 +14,13 @@ def test_settings_loads_required_fields_from_env(monkeypatch):
     assert settings.chunk_overlap == 50
 
 
+def test_settings_default_test_database_url(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-test")
+    monkeypatch.setenv("VOYAGE_API_KEY", "pa-test")
+    settings = Settings(_env_file=None)
+    assert settings.test_database_url == "postgresql+asyncpg://rag:rag@localhost:5433/rag_test"
+
+
 def test_settings_missing_required_field_raises(monkeypatch):
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     monkeypatch.delenv("VOYAGE_API_KEY", raising=False)
