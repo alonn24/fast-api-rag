@@ -24,6 +24,16 @@ Postgres is exposed on host port `5433` (not the default `5432`), mapped to the
 container's internal `5432` — see `docker-compose.yml` and `.env.example`'s
 `DATABASE_URL`. Change this mapping if `5433` is also unavailable on your machine.
 
+If you already had a `db` container running before this change (so its Postgres
+data volume predates `rag_test`), create the test database once manually —
+Postgres only runs `docker/initdb/` scripts against a fresh, empty volume:
+
+```bash
+docker compose exec db psql -U rag -d rag -c "CREATE DATABASE rag_test"
+```
+
+New clones get `rag_test` automatically via `docker/initdb/01-create-test-db.sql`.
+
 ## Run the app
 
 ```bash
