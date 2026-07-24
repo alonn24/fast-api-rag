@@ -1,0 +1,20 @@
+[
+  {
+    "id": "vacation-accrual",
+    "question": "How many vacation days do full-time employees accrue per year, and how does rollover work?",
+    "expected_answer": "Full-time employees accrue 15 vacation days per year (1.25 days per month). Up to 5 unused days roll over into the next calendar year; anything beyond that is forfeited.",
+    "expected_source_titles": ["Vacation Policy"]
+  },
+  {
+    "id": "remote-days-per-week",
+    "question": "How many days per week can an employee work remotely without needing VP-level approval?",
+    "expected_answer": "Up to 3 days per week with manager approval. Going fully remote (more than 3 days per week) requires VP-level sign-off.",
+    "expected_source_titles": ["Remote Work Policy"]
+  },
+  {
+    "id": "expense-receipt-threshold",
+    "question": "Above what dollar amount do I need an itemized receipt for an expense, and how long do I have to submit an expense report?",
+    "expected_answer": "Itemized receipts are required for any single expense over $25, and expense reports must be submitted within 30 days of the expense.",
+    "expected_source_titles": ["Expense Reimbursement Policy"]
+  }
+]

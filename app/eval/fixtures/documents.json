@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Vacation Policy",
+    "source": "hr-handbook",
+    "content": "Full-time employees accrue 15 days of paid vacation per year, accrued monthly at 1.25 days per month. Unused vacation days roll over up to a maximum of 5 days into the next calendar year; any excess beyond 5 days is forfeited at year end. Employees must submit vacation requests through the HR portal at least two weeks in advance for any request longer than 3 consecutive days.",
+    "metadata": {"category": "hr"}
+  },
+  {
+    "title": "Remote Work Policy",
+    "source": "hr-handbook",
+    "content": "Employees may work remotely up to 3 days per week with their manager's approval. Fully remote arrangements (more than 3 days per week) require VP-level sign-off and are reviewed annually. Remote employees must be reachable during core hours of 10am-4pm in their local timezone and must attend the quarterly in-person team offsite.",
+    "metadata": {"category": "hr"}
+  },
+  {
+    "title": "Expense Reimbursement Policy",
+    "source": "hr-handbook",
+    "content": "Employees can be reimbursed for business-related expenses including travel, client meals, and approved software subscriptions. Expense reports must be submitted within 30 days of the expense via the Expensify system, with an itemized receipt required for any single expense over $25. Reimbursements are processed within 10 business days of manager approval.",
+    "metadata": {"category": "hr"}
+  }
+]
