@@ -1,3 +1,10 @@
+import os
+
+os.environ.setdefault(
+    "DATABASE_URL",
+    os.environ.get("TEST_DATABASE_URL", "postgresql+asyncpg://rag:rag@localhost:5433/rag_test"),
+)
+
 import argparse
 import asyncio
 import json
@@ -12,6 +19,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.agent.tool_loop import run_agent_query
 from app.api.documents import create_document
 from app.config import get_settings
+from app.db.schema import apply_schema
 from app.db.session import engine, session_factory
 from app.eval.judge import JudgeError, judge_case
 from app.eval.report import CaseResult, case_passed, write_report
@@ -158,6 +166,7 @@ async def main_async(args: argparse.Namespace) -> int:
     documents = load_documents(args.documents)
     cases = load_cases(args.cases)
 
+    await apply_schema(engine)
     await truncate_tables()
 
     anthropic_client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
