@@ -60,6 +60,14 @@ dependency overrides — no real API keys or network calls are needed for the
 default test run (a `.env` with placeholder keys is enough for `Settings()`
 to construct).
 
+Tests always target the `rag_test` database (see `TEST_DATABASE_URL` in
+`.env.example`), independent of whatever `DATABASE_URL` in `.env` points the
+dev server at — `docker compose exec db psql -U rag -d rag_test` connects to
+the same test database tests use. This means the dev server
+(`uv run uvicorn app.main:app --reload`) can be left running against `rag`
+while `uv run pytest` runs concurrently without either one truncating the
+other's data.
+
 ```bash
 docker compose up -d
 uv run pytest -v
@@ -71,6 +79,10 @@ uv run pytest -v
 own fixture documents (`app/eval/fixtures/`), runs each fixture question through the real
 agent, and scores the answer with an independent judge model. It costs real Anthropic +
 Voyage API calls and is intentionally excluded from the default `pytest` run.
+
+Like `pytest`, this always targets `rag_test` (see `TEST_DATABASE_URL` in
+`.env.example`), not the `rag` database the dev server uses — it's safe to run
+alongside a live dev server.
 
 ```bash
 docker compose up -d
