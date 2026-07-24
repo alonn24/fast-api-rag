@@ -55,6 +55,22 @@ docker compose up -d
 uv run pytest -v
 ```
 
+## Run the agent evaluation
+
+`app/eval/` is an LLM-as-judge evaluation harness for the `/query` agent. It ingests its
+own fixture documents (`app/eval/fixtures/`), runs each fixture question through the real
+agent, and scores the answer with an independent judge model. It costs real Anthropic +
+Voyage API calls and is intentionally excluded from the default `pytest` run.
+
+```bash
+docker compose up -d
+uv run python -m app.eval.run_eval
+```
+
+Writes `eval_report.html` (override with `--output`) and exits nonzero if any case fails
+any of the three judged dimensions (correctness, faithfulness, retrieval_relevance). Use
+`--judge-model`, `--documents`, `--cases` to override defaults.
+
 ## Design notes
 
 See `docs/adr/` for architecture decision records, e.g. why `search_chunks`
