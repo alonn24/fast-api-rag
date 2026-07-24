@@ -89,6 +89,17 @@ docker compose up -d
 uv run python -m app.eval.run_eval
 ```
 
+## CI
+
+`.github/workflows/ci.yml` runs `pytest` against a `pgvector/pgvector:pg16` service
+container on every push/PR, using placeholder Anthropic/Voyage keys (calls are mocked,
+same as local test runs).
+
+The agent evaluation does **not** run automatically — it costs real API calls. Trigger
+it manually from the Actions tab ("Run workflow"), with `ANTHROPIC_API_KEY` and
+`VOYAGE_API_KEY` configured as repo secrets. The resulting `eval_report.html` is
+uploaded as a workflow artifact ("eval-report") for download.
+
 Writes `eval_report.html` (override with `--output`) and exits nonzero if any case fails
 any of the three judged dimensions (correctness, faithfulness, retrieval_relevance). Use
 `--judge-model`, `--documents`, `--cases` to override defaults.
